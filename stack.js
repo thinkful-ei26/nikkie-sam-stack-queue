@@ -7,7 +7,6 @@ class _Node{
   }
 }
 
-
 class Stack {
   constructor(){
     this.top = null;
@@ -31,11 +30,15 @@ class Stack {
    
 }
 
+function isEmpty(stack){
+  return peek(stack) === null ? true : false;
+}
+
 function peek(stack){
   if (stack.top === null){
     return null;
   }
-  return stack.top.value;
+  return stack.top.data;
 }
 
 function display(stack){
@@ -44,7 +47,7 @@ function display(stack){
     console.log('You have no stack to display');
   }
   while(current !== null){
-    console.log(current.value);
+    console.log(current.data);
     current= current.next;
   }
 }
@@ -96,4 +99,43 @@ function matchParen(str){
   //if theres anything left in the stack, return false
   return (peek(stack) !==null) ? peek(stack).index : -1;
 }
-console.log(matchParen('((ASDasd(()dasdfasd))ASDasd)'));
+
+function sortStack(stack){
+  let tempStack = new Stack();
+  let temp;
+  while (!isEmpty(stack)){
+    temp = stack.pop();
+    while(peek(tempStack)< temp && !isEmpty(tempStack)){
+      stack.push(tempStack.pop());
+    }
+    tempStack.push(temp);
+  }
+  return tempStack;
+}
+
+let stack = new Stack();
+stack.push(5);
+stack.push(1);
+stack.push(10);
+stack.push(3);
+// display(stack);
+let sortedstack = sortStack(stack);
+display(sortedstack);
+
+// [5, 4, 1, 3]
+//[]
+//temp = 5
+//[4, 1, 3]
+// Create a temporary stack say tmpStack.
+// While input stack is NOT empty do this:
+// Pop an element from input stack call it temp
+// push temp to  tempStack
+
+// pop off stack again 
+// while temporary stack is NOT empty and top of temporary stack is greater than temp,
+// pop from temporary stack and push it to the input stack
+// push temp in temporary stack
+// The sorted numbers are in tmpStack
+// while (peek(tempStack) < temp) {
+//     tempStack.pop() 
+// }
