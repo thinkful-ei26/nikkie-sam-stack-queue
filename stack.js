@@ -73,7 +73,27 @@ function is_palindrome(s) {
 // "mom" m --> o --> m
 
 // true, true, true
-console.log(is_palindrome('dad'));
-console.log(is_palindrome('A man, a plan, a canal: Panama'));
-console.log(is_palindrome('1001'));
-console.log(is_palindrome('Tauhida'));
+// console.log(is_palindrome('dad'));
+// console.log(is_palindrome('A man, a plan, a canal: Panama'));
+// console.log(is_palindrome('1001'));
+// console.log(is_palindrome('Tauhida'));
+
+function matchParen(str){
+  let stack = new Stack();
+  for( let i = 0; i<str.length; i++){
+    if (str[i] === '('){
+      let data = {index: i, string: str[i]};
+      stack.push(data);
+    }
+    //If we see a closing parantheses and stack is empty its a prob
+    else if (str[i] === ')' && peek(stack) !== null){
+      stack.pop();
+    } 
+    else if (str[i] === ')' && peek(stack) === null) {
+      return i;
+    }
+  } 
+  //if theres anything left in the stack, return false
+  return (peek(stack) !==null) ? peek(stack).index : -1;
+}
+console.log(matchParen('((ASDasd(()dasdfasd))ASDasd)'));
