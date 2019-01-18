@@ -106,7 +106,31 @@ function squareDance(dancerQueue){
   }
 }
 
+function ophidianBank(lineQueue){
+  let count =0;
+  while (count < 25 && !isEmpty(lineQueue)){
+    let customer = lineQueue.dequeue();
+    if (Math.floor(Math.random() * 4) === 0){
+      lineQueue.enqueue(customer);
+      console.log(`${customer} did not have proper paperwork and is sent back to the end of the line`); 
+      count++;
+    }else{
+      console.log(`${customer} has been served`);
+      count++;
+    } 
+  }
+  // dequeue first customer 1/4 time enqueue in line 
+}
 
+let lineQueue = new Queue();
+lineQueue.enqueue('Sam');
+lineQueue.enqueue('Nikkie');
+lineQueue.enqueue('Trisha');
+lineQueue.enqueue('Steve');
+lineQueue.enqueue('Michael');
+lineQueue.enqueue('Jordan');
+lineQueue.enqueue('Chris');
+ophidianBank(lineQueue);
 // let queue = new Queue();
 // queue.enqueue('M Sam');
 // queue.enqueue('F Nikkie');
@@ -119,16 +143,16 @@ function squareDance(dancerQueue){
 // queue.dequeue();
 
 
-let dancerQueue = new Queue();
+// let dancerQueue = new Queue();
 
 
-dancerQueue.enqueue('F Jane');
-dancerQueue.enqueue('M Frank');
-dancerQueue.enqueue('M John');
-dancerQueue.enqueue('M Sherlock');
-dancerQueue.enqueue('F Madonna');
-dancerQueue.enqueue('M David');
-dancerQueue.enqueue('M Christopher');
-dancerQueue.enqueue('F Beyonce');
+// dancerQueue.enqueue('F Jane');
+// dancerQueue.enqueue('M Frank');
+// dancerQueue.enqueue('M John');
+// dancerQueue.enqueue('M Sherlock');
+// dancerQueue.enqueue('F Madonna');
+// dancerQueue.enqueue('M David');
+// dancerQueue.enqueue('M Christopher');
+// dancerQueue.enqueue('F Beyonce');
 
-squareDance(dancerQueue);
+// squareDance(dancerQueue);
